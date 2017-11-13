@@ -50,14 +50,6 @@ module.exports = {
 							}
 						},
 						{
-							loader: 'postcss-loader',
-							options: {
-								plugins: function() {
-									return [autoprefixer({ browsers: ['last 5 versions','ie >= 10','Safari >= 6.1','ios >= 7.1'] })]
-								}
-							}
-						},
-						{
 							loader: 'less-loader',
 							options: {
 								sourceMap: true
