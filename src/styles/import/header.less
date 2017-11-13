@@ -1,0 +1,41 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    .logo {
+        font-size: 69px;
+        color: #333;
+        text-decoration: none;
+        &:focus {
+            text-decoration: none;
+            outline: none;
+        }
+    }
+    .mainMenu {
+        padding: 10px 15px 10px 15px;
+        position: fixed;
+        top: 20px;
+        right: 5%;
+        z-index: 1000;
+        display: block;
+        user-select: none;
+        &:hover {
+            cursor: pointer;
+        }
+        &__line {
+            display: block;
+            width: 25px;
+            border-top: 3px solid #333;
+            margin-bottom: 5px;
+            transition: all 0.3s;
+            &.rotate {
+                transform: rotate(45deg);
+            }
+            &.rotateTwo {
+                transform: rotate(-45deg);
+                position: relative;
+                top: -8px;
+            }
+        }
+    }
+}
