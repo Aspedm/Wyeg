@@ -10986,7 +10986,7 @@ ModuleCollection.prototype.register = function register (path, rawModule, runtim
     var this$1 = this;
     if ( runtime === void 0 ) runtime = true;
 
-  if (undefined !== 'production') {
+  if (true) {
     assertRawModule(path, rawModule);
   }
 
@@ -11015,7 +11015,7 @@ ModuleCollection.prototype.unregister = function unregister (path) {
 };
 
 function update (path, targetModule, newModule) {
-  if (undefined !== 'production') {
+  if (true) {
     assertRawModule(path, newModule);
   }
 
@@ -11026,7 +11026,7 @@ function update (path, targetModule, newModule) {
   if (newModule.modules) {
     for (var key in newModule.modules) {
       if (!targetModule.getChild(key)) {
-        if (undefined !== 'production') {
+        if (true) {
           console.warn(
             "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
             'manual reload is needed'
@@ -11097,7 +11097,7 @@ var Store = function Store (options) {
     install(window.Vue);
   }
 
-  if (undefined !== 'production') {
+  if (true) {
     assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
     assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
     assert(this instanceof Store, "Store must be called with the new operator.");
@@ -11161,7 +11161,7 @@ prototypeAccessors.state.get = function () {
 };
 
 prototypeAccessors.state.set = function (v) {
-  if (undefined !== 'production') {
+  if (true) {
     assert(false, "Use store.replaceState() to explicit replace store state.");
   }
 };
@@ -11178,7 +11178,7 @@ Store.prototype.commit = function commit (_type, _payload, _options) {
   var mutation = { type: type, payload: payload };
   var entry = this._mutations[type];
   if (!entry) {
-    if (undefined !== 'production') {
+    if (true) {
       console.error(("[vuex] unknown mutation type: " + type));
     }
     return
@@ -11191,7 +11191,7 @@ Store.prototype.commit = function commit (_type, _payload, _options) {
   this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); });
 
   if (
-    undefined !== 'production' &&
+    "development" !== 'production' &&
     options && options.silent
   ) {
     console.warn(
@@ -11212,7 +11212,7 @@ Store.prototype.dispatch = function dispatch (_type, _payload) {
   var action = { type: type, payload: payload };
   var entry = this._actions[type];
   if (!entry) {
-    if (undefined !== 'production') {
+    if (true) {
       console.error(("[vuex] unknown action type: " + type));
     }
     return
@@ -11236,7 +11236,7 @@ Store.prototype.subscribeAction = function subscribeAction (fn) {
 Store.prototype.watch = function watch (getter, cb, options) {
     var this$1 = this;
 
-  if (undefined !== 'production') {
+  if (true) {
     assert(typeof getter === 'function', "store.watch only accepts a function.");
   }
   return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
@@ -11255,7 +11255,7 @@ Store.prototype.registerModule = function registerModule (path, rawModule, optio
 
   if (typeof path === 'string') { path = [path]; }
 
-  if (undefined !== 'production') {
+  if (true) {
     assert(Array.isArray(path), "module path must be a string or an Array.");
     assert(path.length > 0, 'cannot register the root module by using registerModule.');
   }
@@ -11271,7 +11271,7 @@ Store.prototype.unregisterModule = function unregisterModule (path) {
 
   if (typeof path === 'string') { path = [path]; }
 
-  if (undefined !== 'production') {
+  if (true) {
     assert(Array.isArray(path), "module path must be a string or an Array.");
   }
 
@@ -11424,7 +11424,7 @@ function makeLocalContext (store, namespace, path) {
 
       if (!options || !options.root) {
         type = namespace + type;
-        if (undefined !== 'production' && !store._actions[type]) {
+        if ("development" !== 'production' && !store._actions[type]) {
           console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
           return
         }
@@ -11441,7 +11441,7 @@ function makeLocalContext (store, namespace, path) {
 
       if (!options || !options.root) {
         type = namespace + type;
-        if (undefined !== 'production' && !store._mutations[type]) {
+        if ("development" !== 'production' && !store._mutations[type]) {
           console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
           return
         }
@@ -11524,7 +11524,7 @@ function registerAction (store, type, handler, local) {
 
 function registerGetter (store, type, rawGetter, local) {
   if (store._wrappedGetters[type]) {
-    if (undefined !== 'production') {
+    if (true) {
       console.error(("[vuex] duplicate getter key: " + type));
     }
     return
@@ -11541,7 +11541,7 @@ function registerGetter (store, type, rawGetter, local) {
 
 function enableStrictMode (store) {
   store._vm.$watch(function () { return this._data.$$state }, function () {
-    if (undefined !== 'production') {
+    if (true) {
       assert(store._committing, "Do not mutate vuex store state outside mutation handlers.");
     }
   }, { deep: true, sync: true });
@@ -11560,7 +11560,7 @@ function unifyObjectStyle (type, payload, options) {
     type = type.type;
   }
 
-  if (undefined !== 'production') {
+  if (true) {
     assert(typeof type === 'string', ("Expects string as the type, but found " + (typeof type) + "."));
   }
 
@@ -11569,7 +11569,7 @@ function unifyObjectStyle (type, payload, options) {
 
 function install (_Vue) {
   if (Vue && _Vue === Vue) {
-    if (undefined !== 'production') {
+    if (true) {
       console.error(
         '[vuex] already installed. Vue.use(Vuex) should be called only once.'
       );
@@ -11644,7 +11644,7 @@ var mapGetters = normalizeNamespace(function (namespace, getters) {
       if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
         return
       }
-      if (undefined !== 'production' && !(val in this.$store.getters)) {
+      if ("development" !== 'production' && !(val in this.$store.getters)) {
         console.error(("[vuex] unknown getter: " + val));
         return
       }
@@ -11709,7 +11709,7 @@ function normalizeNamespace (fn) {
 
 function getModuleByNamespace (store, helper, namespace) {
   var module = store._modulesNamespaceMap[namespace];
-  if (undefined !== 'production' && !module) {
+  if ("development" !== 'production' && !module) {
     console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
   }
   return module
@@ -12551,7 +12551,7 @@ function assert (condition, message) {
 }
 
 function warn (condition, message) {
-  if (undefined !== 'production' && !condition) {
+  if ("development" !== 'production' && !condition) {
     typeof console !== 'undefined' && console.warn(("[vue-router] " + message));
   }
 }
@@ -12662,7 +12662,7 @@ function resolveProps (route, config) {
     case 'boolean':
       return config ? route.params : undefined
     default:
-      if (undefined !== 'production') {
+      if (true) {
         warn(
           false,
           "props in \"" + (route.path) + "\" is a " + (typeof config) + ", " +
@@ -12706,7 +12706,7 @@ function resolveQuery (
   try {
     parsedQuery = parse(query || '');
   } catch (e) {
-    undefined !== 'production' && warn(false, e.message);
+    "development" !== 'production' && warn(false, e.message);
     parsedQuery = {};
   }
   for (var key in extraQuery) {
@@ -13629,7 +13629,7 @@ function fillParams (
       (regexpCompileCache[path] = pathToRegexp_1.compile(path));
     return filler(params || {}, { pretty: true })
   } catch (e) {
-    if (undefined !== 'production') {
+    if (true) {
       warn(false, ("missing param for " + routeMsg + ": " + (e.message)));
     }
     return ''
@@ -13681,7 +13681,7 @@ function addRouteRecord (
 ) {
   var path = route.path;
   var name = route.name;
-  if (undefined !== 'production') {
+  if (true) {
     assert(path != null, "\"path\" is required in a route configuration.");
     assert(
       typeof route.component !== 'string',
@@ -13723,7 +13723,7 @@ function addRouteRecord (
     // Warn if route is named, does not redirect and has a default child route.
     // If users navigate to this route by name, the default child will
     // not be rendered (GH Issue #629)
-    if (undefined !== 'production') {
+    if (true) {
       if (route.name && !route.redirect && route.children.some(function (child) { return /^\/?$/.test(child.path); })) {
         warn(
           false,
@@ -13772,7 +13772,7 @@ function addRouteRecord (
   if (name) {
     if (!nameMap[name]) {
       nameMap[name] = record;
-    } else if (undefined !== 'production' && !matchAs) {
+    } else if ("development" !== 'production' && !matchAs) {
       warn(
         false,
         "Duplicate named routes definition: " +
@@ -13784,7 +13784,7 @@ function addRouteRecord (
 
 function compileRouteRegex (path, pathToRegexpOptions) {
   var regex = pathToRegexp_1(path, [], pathToRegexpOptions);
-  if (undefined !== 'production') {
+  if (true) {
     var keys = Object.create(null);
     regex.keys.forEach(function (key) {
       warn(!keys[key.name], ("Duplicate param keys in route with path: \"" + path + "\""));
@@ -13827,7 +13827,7 @@ function normalizeLocation (
     } else if (current.matched.length) {
       var rawPath = current.matched[current.matched.length - 1].path;
       next.path = fillParams(rawPath, params, ("path " + (current.path)));
-    } else if (undefined !== 'production') {
+    } else if (true) {
       warn(false, "relative params navigation requires a current route.");
     }
     return next
@@ -13891,7 +13891,7 @@ function createMatcher (
 
     if (name) {
       var record = nameMap[name];
-      if (undefined !== 'production') {
+      if (true) {
         warn(record, ("Route with name '" + name + "' does not exist"));
       }
       if (!record) { return _createRoute(null, location) }
@@ -13943,7 +13943,7 @@ function createMatcher (
     }
 
     if (!redirect || typeof redirect !== 'object') {
-      if (undefined !== 'production') {
+      if (true) {
         warn(
           false, ("invalid redirect option: " + (JSON.stringify(redirect)))
         );
@@ -13964,7 +13964,7 @@ function createMatcher (
     if (name) {
       // resolved named direct
       var targetRecord = nameMap[name];
-      if (undefined !== 'production') {
+      if (true) {
         assert(targetRecord, ("redirect failed: named route \"" + name + "\" not found."));
       }
       return match({
@@ -13987,7 +13987,7 @@ function createMatcher (
         hash: hash
       }, undefined, location)
     } else {
-      if (undefined !== 'production') {
+      if (true) {
         warn(false, ("invalid redirect option: " + (JSON.stringify(redirect))));
       }
       return _createRoute(null, location)
@@ -14092,7 +14092,7 @@ function handleScroll (
     return
   }
 
-  if (undefined !== 'production') {
+  if (true) {
     assert(typeof behavior === 'function', "scrollBehavior must be a function");
   }
 
@@ -14109,7 +14109,7 @@ function handleScroll (
       shouldScroll.then(function (shouldScroll) {
         scrollToPosition((shouldScroll), position);
       }).catch(function (err) {
-        if (undefined !== 'production') {
+        if (true) {
           assert(false, err.toString());
         }
       });
@@ -14299,7 +14299,7 @@ function resolveAsyncComponents (matched) {
 
         var reject = once(function (reason) {
           var msg = "Failed to resolve async component " + key + ": " + reason;
-          undefined !== 'production' && warn(false, msg);
+          "development" !== 'production' && warn(false, msg);
           if (!error) {
             error = isError(reason)
               ? reason
@@ -14989,7 +14989,7 @@ var VueRouter = function VueRouter (options) {
       this.history = new AbstractHistory(this, options.base);
       break
     default:
-      if (undefined !== 'production') {
+      if (true) {
         assert(false, ("invalid mode: " + mode));
       }
   }
@@ -15012,7 +15012,7 @@ prototypeAccessors.currentRoute.get = function () {
 VueRouter.prototype.init = function init (app /* Vue component instance */) {
     var this$1 = this;
 
-  undefined !== 'production' && assert(
+  "development" !== 'production' && assert(
     install.installed,
     "not installed. Make sure to call `Vue.use(VueRouter)` " +
     "before creating root instance."
@@ -17963,9 +17963,558 @@ exports.default = {
 
 /***/ }),
 /* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(47);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(49)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js??ref--2-2!../../node_modules/less-loader/dist/cjs.js??ref--2-3!./main.less", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js??ref--2-2!../../node_modules/less-loader/dist/cjs.js??ref--2-3!./main.less");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(48)();
+// imports
+exports.push([module.i, "@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,500,700&subset=latin,cyrillic);", ""]);
+
+// module
+exports.push([module.i, "body {\n  font-family: 'Roboto', sans-serif;\n  background: #ffffff;\n  margin: 0;\n  padding: 0;\n  font-weight: 100;\n  color: #333;\n}\n::selection {\n  background: #f0ed8d;\n}\n::-moz-selection {\n  background: #f0ed8d;\n}\n#app {\n  padding: 0 1.5rem;\n  margin: 0 auto;\n  max-width: 1280px;\n}\n.displayNone {\n  display: none!important;\n}\n.globalMenu {\n  background: #fff;\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n}\n.page__name {\n  font-size: 45pt;\n  line-height: 4.62rem;\n  font-weight: 400;\n  color: #333;\n  text-align: center;\n  margin: 65px 0;\n}\n.page__text {\n  font-size: 16pt;\n  max-width: 800px;\n  margin: 0 auto;\n  padding: 25px 0 25px 0;\n  text-align: center;\n}\n.page__text:after {\n  content: '';\n  display: block;\n  border-top: 1px solid #333;\n  width: 80px;\n  margin: 0 auto;\n  margin-top: 25px;\n}\n.page__text:before {\n  content: '';\n  display: block;\n  border-top: 1px solid #333;\n  width: 80px;\n  margin: 0 auto;\n  margin-bottom: 25px;\n}\n.page__text a {\n  color: #039be5;\n  text-decoration: none;\n  border-bottom: 1px solid #039be5;\n}\n.page__text a:focus {\n  outline: none;\n  text-decoration: none;\n}\n.header {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n}\n.header .logo {\n  font-size: 69px;\n  color: #333;\n  text-decoration: none;\n}\n.header .logo:focus {\n  text-decoration: none;\n  outline: none;\n}\n.header .mainMenu {\n  padding: 10px 15px 10px 15px;\n  position: fixed;\n  top: 20px;\n  right: 5%;\n  z-index: 1000;\n  display: block;\n  user-select: none;\n}\n.header .mainMenu:hover {\n  cursor: pointer;\n}\n.header .mainMenu__line {\n  display: block;\n  width: 25px;\n  border-top: 3px solid #333;\n  margin-bottom: 5px;\n  transition: all 0.3s;\n}\n.header .mainMenu__line.rotate {\n  transform: rotate(45deg);\n}\n.header .mainMenu__line.rotateTwo {\n  transform: rotate(-45deg);\n  position: relative;\n  top: -8px;\n}\n.mainDash {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  flex-wrap: wrap;\n  width: 800px;\n}\n@media (max-width: 850px) {\n  .mainDash {\n    width: 100%;\n  }\n}\n.mainDash__item {\n  width: 375px;\n  height: 160px;\n  position: relative;\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\n  margin-bottom: 25px;\n}\n.mainDash__item:hover {\n  cursor: pointer;\n}\n.mainDash__item .cardName {\n  text-align: center;\n  color: #ffffff;\n  font-size: 15px;\n  font-weight: 100;\n  background: rgba(0, 0, 0, 0.3);\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  padding: 5px 0;\n  z-index: 2;\n}\n.mainDash__item .cardInfo {\n  position: absolute;\n  top: 15px;\n  left: 15px;\n  z-index: 2;\n}\n.mainDash__item .cardInfo__item {\n  color: #fff;\n}\n.mainDash__item .cardBackground {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n}\n@media (max-width: 850px) {\n  .mainDash__item {\n    width: 240px;\n  }\n}\n.mainDash .portfolio .cardBackground {\n  background-image: url('../../public/images/portfolio.png');\n  background-size: cover;\n  background-repeat: no-repeat;\n}\n.mainDash .profile .cardBackground {\n  background-image: url('../../public/images/profile.png');\n  background-size: cover;\n  background-repeat: no-repeat;\n}\n.mainDash .jobs .cardBackground {\n  background: #f39a7d;\n  background: linear-gradient(to bottom, #f39a7d 0%, #f5be9f 50%, #f5e1c0 100%);\n  overflow: hidden;\n}\n.mainDash .jobs .cardBackground .sun {\n  background: #fefbf8;\n  width: 40px;\n  height: 40px;\n  border-radius: 100%;\n  position: absolute;\n  left: 20px;\n  top: 30px;\n}\n.mainDash .jobs .cardBackground .cloud {\n  position: absolute;\n  width: 55px;\n  height: 20px;\n  background: #fff;\n  border-radius: 20px;\n}\n.mainDash .jobs .cardBackground .cloud-first {\n  top: 20px;\n  animation: cloud1 18s infinite linear;\n}\n.mainDash .jobs .cardBackground .cloud-second {\n  top: 60px;\n  animation: cloud2 9s infinite linear;\n}\n.mainDash .jobs .cardBackground .cloud:before {\n  position: absolute;\n  width: 55px;\n  height: 20px;\n  background: #fff;\n  border-radius: 20px;\n  content: '';\n  left: 50px;\n}\n.mainDash .jobs .cardBackground .cloud:after {\n  position: absolute;\n  width: 55px;\n  height: 20px;\n  background: #fff;\n  border-radius: 20px;\n  content: '';\n  left: 25px;\n  top: -10px;\n}\n@keyframes cloud1 {\n  0% {\n    left: -80px;\n  }\n  100% {\n    left: 400px;\n  }\n}\n@keyframes cloud2 {\n  0% {\n    left: -100px;\n  }\n  100% {\n    left: 400px;\n  }\n}\n.mainDash .jobs .cardBackground .lake {\n  background: #a4f0fd;\n  width: 100%;\n  height: 50px;\n  position: absolute;\n  bottom: 0;\n}\n.mainDash .jobs .cardBackground .lake .vawe {\n  position: absolute;\n  background: #dbf9fe;\n  width: 50px;\n  height: 8px;\n}\n.mainDash .jobs .cardBackground .lake .vawe-first {\n  top: 20px;\n  left: 10%;\n}\n.mainDash .jobs .cardBackground .lake .vawe-second {\n  top: 30px;\n  left: 45%;\n}\n.mainDash .jobs .cardBackground .lake .vawe-third {\n  top: 10px;\n  left: 70%;\n}\n.mainDash .jobs .cardBackground .boat {\n  position: absolute;\n  bottom: 10px;\n  animation: boatanimate 30s linear infinite;\n}\n.mainDash .jobs .cardBackground .boat ul {\n  list-style: none;\n}\n.mainDash .jobs .cardBackground .boat .fume li {\n  background-color: white;\n  border-radius: 50%;\n  margin-left: 25px;\n  position: relative;\n  bottom: 20px;\n}\n.mainDash .jobs .cardBackground .boat .fume-first {\n  width: 12px;\n  height: 12px;\n  animation: smokeup 1.2s linear infinite;\n}\n.mainDash .jobs .cardBackground .boat .fume-second {\n  width: 10px;\n  height: 10px;\n  animation: smokeup 1.1s linear infinite;\n}\n.mainDash .jobs .cardBackground .boat .fume-third {\n  width: 5px;\n  height: 5px;\n  animation: smokeup 1.0s linear infinite;\n}\n@keyframes smokeup {\n  0% {\n    bottom: 22px;\n    opacity: 1;\n  }\n  80% {\n    bottom: 25px;\n    opacity: 0;\n  }\n  100% {\n    bottom: 30px;\n    opacity: 0;\n  }\n}\n.mainDash .jobs .cardBackground .boat-body {\n  width: 100px;\n  height: 20px;\n  background: #cd6c65;\n  border-top-left-radius: 3px;\n  border-bottom-left-radius: 20px;\n}\n.mainDash .jobs .cardBackground .boat-funnel {\n  width: 10px;\n  height: 15px;\n  background: #fff;\n  position: relative;\n  left: 60%;\n  bottom: 17px;\n  border-top-left-radius: 2px;\n  border-top-right-radius: 2px;\n}\n.mainDash .jobs .cardBackground .boat-funnel .funnelTop {\n  background: #5e6162;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  height: 5px;\n  border-top-left-radius: 2px;\n  border-top-right-radius: 2px;\n}\n.mainDash .jobs .cardBackground .boat-funnel .funnelMiddle {\n  background: #5e6162;\n  position: absolute;\n  top: 10px;\n  width: 100%;\n  height: 2px;\n}\n.mainDash .jobs .cardBackground .boat-deck {\n  width: 65px;\n  height: 16px;\n  background: #fff;\n  margin: -17px 13px;\n  border-top-left-radius: 20px;\n}\n.mainDash .jobs .cardBackground .boat-windows {\n  margin: 0px -10px;\n}\n.mainDash .jobs .cardBackground .boat-windows li {\n  display: inline-block;\n  background: #6fc6e0;\n  width: 5px;\n  height: 5px;\n  margin: 5px 5px;\n  border-radius: 50%;\n}\n@keyframes boatanimate {\n  0% {\n    right: -100px;\n  }\n  100% {\n    right: 450px;\n  }\n}\n.mainDash .contacts {\n  background-image: url('../../public/images/contacts.png');\n  background-size: cover;\n  background-position: top center;\n  background-repeat: no-repeat;\n}\n.mainDash-center {\n  margin: 65px auto;\n}\n", "", {"version":3,"sources":["/./src/styles/import/common.less","/./src/styles/main.less","/./src/styles/import/header.less","/./src/styles/import/mainPage.less"],"names":[],"mappings":"AAAA;EACI,kCAAA;EACA,oBAAA;EACA,UAAA;EACA,WAAA;EACA,iBAAA;EACA,YAAA;CCEH;ADCD;EACI,oBAAA;CCCH;ADED;EACI,oBAAA;CCAH;ADGD;EACI,kBAAA;EACA,eAAA;EACA,kBAAA;CCDH;ADID;EACI,wBAAA;CCFH;ADKD;EACI,iBAAA;EACA,gBAAA;EACA,YAAA;EACA,aAAA;EACA,OAAA;EACA,QAAA;CCHH;ADgBG;EACI,gBAAA;EACA,qBAAA;EACA,iBAAA;EACA,YAAA;EACA,mBAAA;EACA,eAAA;CCdP;ADgBG;EACI,gBAAA;EACA,iBAAA;EACA,eAAA;EACA,uBAAA;EACA,mBAAA;CCdP;ADeO;EAvBJ,YAAA;EACA,eAAA;EACA,2BAAA;EACA,YAAA;EACA,eAAA;EAqBQ,iBAAA;CCTX;ADWO;EA3BJ,YAAA;EACA,eAAA;EACA,2BAAA;EACA,YAAA;EACA,eAAA;EAyBQ,oBAAA;CCLX;ADPG;EAeQ,eAAA;EACA,sBAAA;EACA,iCAAA;CCLX;ADMW;EACI,cAAA;EACA,sBAAA;CCJf;ACtED;EACI,cAAA;EACA,oBAAA;EACA,8BAAA;CDwEH;AC3ED;EAKQ,gBAAA;EACA,YAAA;EACA,sBAAA;CDyEP;ACxEO;EACI,sBAAA;EACA,cAAA;CD0EX;ACpFD;EAcQ,6BAAA;EACA,gBAAA;EACA,UAAA;EACA,UAAA;EACA,cAAA;EACA,eAAA;EACA,kBAAA;CDyEP;ACxEO;EACI,gBAAA;CD0EX;ACxEO;EACI,eAAA;EACA,YAAA;EACA,2BAAA;EACA,mBAAA;EACA,qBAAA;CD0EX;ACzEW;EACI,yBAAA;CD2Ef;ACzEW;EACI,0BAAA;EACA,mBAAA;EACA,UAAA;CD2Ef;AE/GD;EACI,cAAA;EACA,oBAAA;EACA,8BAAA;EACA,gBAAA;EACA,aAAA;CFiHH;AEhHG;EA0PH;IAzPO,YAAA;GFmHL;CACF;AEjHG;EACI,aAAA;EACA,cAAA;EACA,mBAAA;EACA,8EAAA;EACA,oBAAA;CFmHP;AElHO;EACI,gBAAA;CFoHX;AE3HG;EAUQ,mBAAA;EACA,eAAA;EACA,gBAAA;EACA,iBAAA;EACA,+BAAA;EACA,mBAAA;EACA,UAAA;EACA,QAAA;EACA,YAAA;EACA,eAAA;EACA,WAAA;CFoHX;AExIG;EAuBQ,mBAAA;EACA,UAAA;EACA,WAAA;EACA,WAAA;CFoHX;AEnHW;EACI,YAAA;CFqHf;AEjJG;EAgCQ,YAAA;EACA,aAAA;EACA,mBAAA;EACA,OAAA;EACA,QAAA;EACA,WAAA;CFoHX;AElHO;EA+MP;IA9MW,aAAA;GFqHT;CACF;AExKD;EAwDY,2DAAA;EACA,uBAAA;EACA,6BAAA;CFmHX;AE7KD;EAgEY,yDAAA;EACA,uBAAA;EACA,6BAAA;CFgHX;AElLD;EAwEY,oBAAA;EACA,8EAAA;EACA,iBAAA;CF6GX;AEvLD;EA4EgB,oBAAA;EACA,YAAA;EACA,aAAA;EACA,oBAAA;EACA,mBAAA;EACA,WAAA;EACA,UAAA;CF8Gf;AEhMD;EAqFgB,mBAAA;EACA,YAAA;EACA,aAAA;EACA,iBAAA;EACA,oBAAA;CF8Gf;AE7Ge;EACI,UAAA;EACA,sCAAA;CF+GnB;AE7Ge;EACI,UAAA;EACA,qCAAA;CF+GnB;AE7Ge;EACI,mBAAA;EACA,YAAA;EACA,aAAA;EACA,iBAAA;EACA,oBAAA;EACA,YAAA;EACA,WAAA;CF+GnB;AE7Ge;EACI,mBAAA;EACA,YAAA;EACA,aAAA;EACA,iBAAA;EACA,oBAAA;EACA,YAAA;EACA,WAAA;EACA,WAAA;CF+GnB;AE5GW;EACI;IAAO,YAAA;GF+GpB;EE9Ga;IAAO,YAAA;GFiHpB;CACF;AEhHW;EACI;IAAO,aAAA;GFmHpB;EElHa;IAAO,YAAA;GFqHpB;CACF;AElPD;EA+HgB,oBAAA;EACA,YAAA;EACA,aAAA;EACA,mBAAA;EACA,UAAA;CFsHf;AEzPD;EAqIoB,mBAAA;EACA,oBAAA;EACA,YAAA;EACA,YAAA;CFuHnB;AEtHmB;EACI,UAAA;EACA,UAAA;CFwHvB;AEtHmB;EACI,UAAA;EACA,UAAA;CFwHvB;AEtHmB;EACI,UAAA;EACA,UAAA;CFwHvB;AE3QD;EAwJgB,mBAAA;EACA,aAAA;EACA,2CAAA;CFsHf;AEhRD;EA4JoB,iBAAA;CFuHnB;AEnRD;EAiKwB,wBAAA;EACA,mBAAA;EACA,kBAAA;EACA,mBAAA;EACA,aAAA;CFqHvB;AEnHmB;EACI,YAAA;EACA,aAAA;EACA,wCAAA;CFqHvB;AEnHmB;EACI,YAAA;EACA,aAAA;EACA,wCAAA;CFqHvB;AEnHmB;EACI,WAAA;EACA,YAAA;EACA,wCAAA;CFqHvB;AEnHmB;EACI;IAAI,aAAA;IAAc,WAAA;GFuHvC;EEtHqB;IAAK,aAAA;IAAc,WAAA;GF0HxC;EEzHqB;IAAM,aAAA;IAAc,WAAA;GF6HzC;CACF;AE3He;EACI,aAAA;EACA,aAAA;EACA,oBAAA;EACA,4BAAA;EACA,gCAAA;CF6HnB;AE3He;EACI,YAAA;EACA,aAAA;EACA,iBAAA;EACA,mBAAA;EACA,UAAA;EACA,aAAA;EACA,4BAAA;EACA,6BAAA;CF6HnB;AErIe;EAUQ,oBAAA;EACA,mBAAA;EACA,OAAA;EACA,YAAA;EACA,YAAA;EACA,4BAAA;EACA,6BAAA;CF8HvB;AE9Ie;EAmBQ,oBAAA;EACA,mBAAA;EACA,UAAA;EACA,YAAA;EACA,YAAA;CF8HvB;AE3He;EACI,YAAA;EACA,aAAA;EACA,iBAAA;EACA,mBAAA;EACA,6BAAA;CF6HnB;AE3He;EACI,kBAAA;CF6HnB;AE9He;EAGQ,sBAAA;EACA,oBAAA;EACA,WAAA;EACA,YAAA;EACA,gBAAA;EACA,mBAAA;CF8HvB;AE3He;EACI;IAAI,cAAA;GF8HrB;EE7HiB;IAAM,aAAA;GFgIvB;CACF;AElXD;EAwPQ,0DAAA;EACA,uBAAA;EACA,gCAAA;EACA,6BAAA;CF6HP;AE3HG;EACI,kBAAA;CF6HP","file":"main.less","sourcesContent":["body {\n    font-family: 'Roboto', sans-serif;\n    background: #ffffff;\n    margin: 0;\n    padding: 0;\n    font-weight: 100;\n    color: #333;\n}\n\n::selection {\n    background: #f0ed8d;\n}\n\n::-moz-selection {\n    background: #f0ed8d;\n}\n\n#app {\n    padding: 0 1.5rem;\n    margin: 0 auto;\n    max-width: 1280px;\n}\n\n.displayNone {\n    display: none!important;\n}\n\n.globalMenu {\n    background: #fff;\n    position: fixed;\n    width: 100%;\n    height: 100%;\n    top: 0;\n    left: 0;\n}\n\n.line() {\n    content: '';\n    display: block;\n    border-top: 1px solid #333;\n    width: 80px;\n    margin: 0 auto;\n}\n\n.page {\n    //\n    &__name {\n        font-size: 45pt;\n        line-height: 4.62rem;\n        font-weight: 400;\n        color: #333;\n        text-align: center;\n        margin: 65px 0;\n    }\n    &__text {\n        font-size: 16pt;\n        max-width: 800px;\n        margin: 0 auto;\n        padding: 25px 0 25px 0;\n        text-align: center;\n        &:after {\n            .line;\n            margin-top: 25px;\n        }\n        &:before {\n            .line;\n            margin-bottom: 25px;\n        }\n        a {\n            color: #039be5;\n            text-decoration: none;\n            border-bottom: 1px solid #039be5;\n            &:focus {\n                outline: none;\n                text-decoration: none;\n            }\n        }\n    }\n}","@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,500,700&subset=latin,cyrillic);\nbody {\n  font-family: 'Roboto', sans-serif;\n  background: #ffffff;\n  margin: 0;\n  padding: 0;\n  font-weight: 100;\n  color: #333;\n}\n::selection {\n  background: #f0ed8d;\n}\n::-moz-selection {\n  background: #f0ed8d;\n}\n#app {\n  padding: 0 1.5rem;\n  margin: 0 auto;\n  max-width: 1280px;\n}\n.displayNone {\n  display: none!important;\n}\n.globalMenu {\n  background: #fff;\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n}\n.page__name {\n  font-size: 45pt;\n  line-height: 4.62rem;\n  font-weight: 400;\n  color: #333;\n  text-align: center;\n  margin: 65px 0;\n}\n.page__text {\n  font-size: 16pt;\n  max-width: 800px;\n  margin: 0 auto;\n  padding: 25px 0 25px 0;\n  text-align: center;\n}\n.page__text:after {\n  content: '';\n  display: block;\n  border-top: 1px solid #333;\n  width: 80px;\n  margin: 0 auto;\n  margin-top: 25px;\n}\n.page__text:before {\n  content: '';\n  display: block;\n  border-top: 1px solid #333;\n  width: 80px;\n  margin: 0 auto;\n  margin-bottom: 25px;\n}\n.page__text a {\n  color: #039be5;\n  text-decoration: none;\n  border-bottom: 1px solid #039be5;\n}\n.page__text a:focus {\n  outline: none;\n  text-decoration: none;\n}\n.header {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n}\n.header .logo {\n  font-size: 69px;\n  color: #333;\n  text-decoration: none;\n}\n.header .logo:focus {\n  text-decoration: none;\n  outline: none;\n}\n.header .mainMenu {\n  padding: 10px 15px 10px 15px;\n  position: fixed;\n  top: 20px;\n  right: 5%;\n  z-index: 1000;\n  display: block;\n  user-select: none;\n}\n.header .mainMenu:hover {\n  cursor: pointer;\n}\n.header .mainMenu__line {\n  display: block;\n  width: 25px;\n  border-top: 3px solid #333;\n  margin-bottom: 5px;\n  transition: all 0.3s;\n}\n.header .mainMenu__line.rotate {\n  transform: rotate(45deg);\n}\n.header .mainMenu__line.rotateTwo {\n  transform: rotate(-45deg);\n  position: relative;\n  top: -8px;\n}\n.mainDash {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  flex-wrap: wrap;\n  width: 800px;\n}\n@media (max-width: 850px) {\n  .mainDash {\n    width: 100%;\n  }\n}\n.mainDash__item {\n  width: 375px;\n  height: 160px;\n  position: relative;\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\n  margin-bottom: 25px;\n}\n.mainDash__item:hover {\n  cursor: pointer;\n}\n.mainDash__item .cardName {\n  text-align: center;\n  color: #ffffff;\n  font-size: 15px;\n  font-weight: 100;\n  background: rgba(0, 0, 0, 0.3);\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  padding: 5px 0;\n  z-index: 2;\n}\n.mainDash__item .cardInfo {\n  position: absolute;\n  top: 15px;\n  left: 15px;\n  z-index: 2;\n}\n.mainDash__item .cardInfo__item {\n  color: #fff;\n}\n.mainDash__item .cardBackground {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n}\n@media (max-width: 850px) {\n  .mainDash__item {\n    width: 240px;\n  }\n}\n.mainDash .portfolio .cardBackground {\n  background-image: url('../../public/images/portfolio.png');\n  background-size: cover;\n  background-repeat: no-repeat;\n}\n.mainDash .profile .cardBackground {\n  background-image: url('../../public/images/profile.png');\n  background-size: cover;\n  background-repeat: no-repeat;\n}\n.mainDash .jobs .cardBackground {\n  background: #f39a7d;\n  background: linear-gradient(to bottom, #f39a7d 0%, #f5be9f 50%, #f5e1c0 100%);\n  overflow: hidden;\n}\n.mainDash .jobs .cardBackground .sun {\n  background: #fefbf8;\n  width: 40px;\n  height: 40px;\n  border-radius: 100%;\n  position: absolute;\n  left: 20px;\n  top: 30px;\n}\n.mainDash .jobs .cardBackground .cloud {\n  position: absolute;\n  width: 55px;\n  height: 20px;\n  background: #fff;\n  border-radius: 20px;\n}\n.mainDash .jobs .cardBackground .cloud-first {\n  top: 20px;\n  animation: cloud1 18s infinite linear;\n}\n.mainDash .jobs .cardBackground .cloud-second {\n  top: 60px;\n  animation: cloud2 9s infinite linear;\n}\n.mainDash .jobs .cardBackground .cloud:before {\n  position: absolute;\n  width: 55px;\n  height: 20px;\n  background: #fff;\n  border-radius: 20px;\n  content: '';\n  left: 50px;\n}\n.mainDash .jobs .cardBackground .cloud:after {\n  position: absolute;\n  width: 55px;\n  height: 20px;\n  background: #fff;\n  border-radius: 20px;\n  content: '';\n  left: 25px;\n  top: -10px;\n}\n@keyframes cloud1 {\n  0% {\n    left: -80px;\n  }\n  100% {\n    left: 400px;\n  }\n}\n@keyframes cloud2 {\n  0% {\n    left: -100px;\n  }\n  100% {\n    left: 400px;\n  }\n}\n.mainDash .jobs .cardBackground .lake {\n  background: #a4f0fd;\n  width: 100%;\n  height: 50px;\n  position: absolute;\n  bottom: 0;\n}\n.mainDash .jobs .cardBackground .lake .vawe {\n  position: absolute;\n  background: #dbf9fe;\n  width: 50px;\n  height: 8px;\n}\n.mainDash .jobs .cardBackground .lake .vawe-first {\n  top: 20px;\n  left: 10%;\n}\n.mainDash .jobs .cardBackground .lake .vawe-second {\n  top: 30px;\n  left: 45%;\n}\n.mainDash .jobs .cardBackground .lake .vawe-third {\n  top: 10px;\n  left: 70%;\n}\n.mainDash .jobs .cardBackground .boat {\n  position: absolute;\n  bottom: 10px;\n  animation: boatanimate 30s linear infinite;\n}\n.mainDash .jobs .cardBackground .boat ul {\n  list-style: none;\n}\n.mainDash .jobs .cardBackground .boat .fume li {\n  background-color: white;\n  border-radius: 50%;\n  margin-left: 25px;\n  position: relative;\n  bottom: 20px;\n}\n.mainDash .jobs .cardBackground .boat .fume-first {\n  width: 12px;\n  height: 12px;\n  animation: smokeup 1.2s linear infinite;\n}\n.mainDash .jobs .cardBackground .boat .fume-second {\n  width: 10px;\n  height: 10px;\n  animation: smokeup 1.1s linear infinite;\n}\n.mainDash .jobs .cardBackground .boat .fume-third {\n  width: 5px;\n  height: 5px;\n  animation: smokeup 1.0s linear infinite;\n}\n@keyframes smokeup {\n  0% {\n    bottom: 22px;\n    opacity: 1;\n  }\n  80% {\n    bottom: 25px;\n    opacity: 0;\n  }\n  100% {\n    bottom: 30px;\n    opacity: 0;\n  }\n}\n.mainDash .jobs .cardBackground .boat-body {\n  width: 100px;\n  height: 20px;\n  background: #cd6c65;\n  border-top-left-radius: 3px;\n  border-bottom-left-radius: 20px;\n}\n.mainDash .jobs .cardBackground .boat-funnel {\n  width: 10px;\n  height: 15px;\n  background: #fff;\n  position: relative;\n  left: 60%;\n  bottom: 17px;\n  border-top-left-radius: 2px;\n  border-top-right-radius: 2px;\n}\n.mainDash .jobs .cardBackground .boat-funnel .funnelTop {\n  background: #5e6162;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  height: 5px;\n  border-top-left-radius: 2px;\n  border-top-right-radius: 2px;\n}\n.mainDash .jobs .cardBackground .boat-funnel .funnelMiddle {\n  background: #5e6162;\n  position: absolute;\n  top: 10px;\n  width: 100%;\n  height: 2px;\n}\n.mainDash .jobs .cardBackground .boat-deck {\n  width: 65px;\n  height: 16px;\n  background: #fff;\n  margin: -17px 13px;\n  border-top-left-radius: 20px;\n}\n.mainDash .jobs .cardBackground .boat-windows {\n  margin: 0px -10px;\n}\n.mainDash .jobs .cardBackground .boat-windows li {\n  display: inline-block;\n  background: #6fc6e0;\n  width: 5px;\n  height: 5px;\n  margin: 5px 5px;\n  border-radius: 50%;\n}\n@keyframes boatanimate {\n  0% {\n    right: -100px;\n  }\n  100% {\n    right: 450px;\n  }\n}\n.mainDash .contacts {\n  background-image: url('../../public/images/contacts.png');\n  background-size: cover;\n  background-position: top center;\n  background-repeat: no-repeat;\n}\n.mainDash-center {\n  margin: 65px auto;\n}\n",".header {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-around;\n    .logo {\n        font-size: 69px;\n        color: #333;\n        text-decoration: none;\n        &:focus {\n            text-decoration: none;\n            outline: none;\n        }\n    }\n    .mainMenu {\n        padding: 10px 15px 10px 15px;\n        position: fixed;\n        top: 20px;\n        right: 5%;\n        z-index: 1000;\n        display: block;\n        user-select: none;\n        &:hover {\n            cursor: pointer;\n        }\n        &__line {\n            display: block;\n            width: 25px;\n            border-top: 3px solid #333;\n            margin-bottom: 5px;\n            transition: all 0.3s;\n            &.rotate {\n                transform: rotate(45deg);\n            }\n            &.rotateTwo {\n                transform: rotate(-45deg);\n                position: relative;\n                top: -8px;\n            }\n        }\n    }\n}",".mainDash {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-around;\n    flex-wrap: wrap;\n    width: 800px;\n    @media (max-width: 850px) {\n        width: 100%;\n        // flex-direction: column;\n    }\n    &__item {\n        width: 375px;\n        height: 160px;\n        position: relative;\n        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);\n        margin-bottom: 25px;\n        &:hover {\n            cursor: pointer;\n        }\n        .cardName {\n            text-align: center;\n            color: #ffffff;\n            font-size: 15px;\n            font-weight: 100;\n            background: rgba(0, 0, 0, 0.3);\n            position: absolute;\n            bottom: 0;\n            left: 0;\n            width: 100%;\n            padding: 5px 0;\n            z-index: 2;\n        }\n        .cardInfo {\n            position: absolute;\n            top: 15px;\n            left: 15px;\n            z-index: 2;\n            &__item {\n                color: #fff;\n            }\n        }\n        .cardBackground {\n            width: 100%;\n            height: 100%;\n            position: absolute;\n            top: 0;\n            left: 0;\n            z-index: 1;\n        }\n        @media (max-width: 850px) {\n            width: 240px;\n        }\n    }\n    .portfolio {\n        //\n        .cardBackground {\n            background-image: url('../../../public/images/portfolio.png');\n            background-size: cover;\n            background-repeat: no-repeat;\n        }\n    }\n    .profile {\n        //\n        .cardBackground {\n            background-image: url('../../../public/images/profile.png');\n            background-size: cover;\n            background-repeat: no-repeat;\n        }\n    }\n    .jobs {\n        //\n        .cardBackground {\n            background: #f39a7d;\n            background: linear-gradient(to bottom, #f39a7d 0%,#f5be9f 50%,#f5e1c0 100%);\n            overflow: hidden;\n            .sun {\n                background: #fefbf8;\n                width: 40px;\n                height: 40px;\n                border-radius: 100%;\n                position: absolute;\n                left: 20px;\n                top: 30px;\n            }\n            .cloud {\n                position: absolute;\n                width: 55px;\n                height: 20px;\n                background: #fff;\n                border-radius: 20px;\n                &-first {\n                    top: 20px;\n                    animation: cloud1 18s infinite linear;\n                }\n                &-second {\n                    top: 60px;\n                    animation: cloud2 9s infinite linear;\n                }\n                &:before {\n                    position: absolute;\n                    width: 55px;\n                    height: 20px;\n                    background: #fff;\n                    border-radius: 20px;\n                    content: '';\n                    left: 50px;\n                }\n                &:after {\n                    position: absolute;\n                    width: 55px;\n                    height: 20px;\n                    background: #fff;\n                    border-radius: 20px;\n                    content: '';\n                    left: 25px;\n                    top: -10px;\n                }\n            }\n            @keyframes cloud1 {\n                0%   { left: -80px; }\n                100% { left: 400px; } \n            }\n            @keyframes cloud2 {\n                0%   { left: -100px; }\n                100% { left: 400px; } \n            }\n            .lake {\n                background: #a4f0fd;\n                width: 100%;\n                height: 50px;\n                position: absolute;\n                bottom: 0;\n                .vawe {\n                    position: absolute;\n                    background: #dbf9fe;\n                    width: 50px;\n                    height: 8px;\n                    &-first {\n                        top: 20px;\n                        left: 10%;\n                    }\n                    &-second {\n                        top: 30px;\n                        left: 45%;\n                    }\n                    &-third {\n                        top: 10px;\n                        left: 70%;\n                    }\n                }\n            }\n            .boat {\n                position: absolute;\n                bottom: 10px;\n                animation: boatanimate 30s linear infinite;\n                ul {\n                    list-style: none;\n                }\n                .fume {\n                    //\n                    li {\n                        background-color: white;\n                        border-radius: 50%;\n                        margin-left: 25px;\n                        position: relative;\n                        bottom: 20px;\n                    }\n                    &-first {\n                        width: 12px;\n                        height: 12px;\n                        animation: smokeup 1.2s linear infinite;\n                    }\n                    &-second {\n                        width: 10px;\n                        height: 10px;\n                        animation: smokeup 1.1s linear infinite;\n                    }\n                    &-third {\n                        width: 5px;\n                        height: 5px;\n                        animation: smokeup 1.0s linear infinite;\n                    }\n                    @keyframes smokeup {\n                        0% {bottom: 22px; opacity: 1}\n                        80% {bottom: 25px; opacity: 0}\n                        100% {bottom: 30px; opacity: 0}\n                    }\n                }\n                &-body {\n                    width: 100px;\n                    height: 20px;\n                    background: #cd6c65;\n                    border-top-left-radius: 3px;\n                    border-bottom-left-radius: 20px;\n                }\n                &-funnel {\n                    width: 10px;\n                    height: 15px;\n                    background: #fff;\n                    position: relative;\n                    left: 60%;\n                    bottom: 17px;\n                    border-top-left-radius: 2px;\n                    border-top-right-radius: 2px;\n                    .funnelTop {\n                        background: #5e6162;\n                        position: absolute;\n                        top: 0;\n                        width: 100%;\n                        height: 5px;\n                        border-top-left-radius: 2px;\n                        border-top-right-radius: 2px;\n                    }\n                    .funnelMiddle {\n                        background: #5e6162;\n                        position: absolute;\n                        top: 10px;\n                        width: 100%;\n                        height: 2px;\n                    }\n                }\n                &-deck {\n                    width: 65px;\n                    height: 16px;\n                    background: #fff;\n                    margin: -17px 13px;\n                    border-top-left-radius: 20px;\n                }\n                &-windows {\n                    margin: 0px -10px;\n                    li {\n                        display: inline-block;\n                        background: #6fc6e0;\n                        width: 5px;\n                        height: 5px;\n                        margin: 5px 5px;\n                        border-radius: 50%;\n                    }\n                }\n                @keyframes boatanimate {\n                    0% {right: -100px;}\n                    100% {right:450px;}\n                }\n            }\n        }\n    }\n    .contacts {\n        //\n        background-image: url('../../../public/images/contacts.png');\n        background-size: cover;\n        background-position: top center;\n        background-repeat: no-repeat;\n    }\n    &-center {\n        margin: 65px auto;\n    }\n}"],"sourceRoot":"webpack://"}]);
+
+// exports
+
+
+/***/ }),
+/* 48 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(selector) {
+		if (typeof memo[selector] === "undefined") {
+			memo[selector] = fn.call(this, selector);
+		}
+
+		return memo[selector]
+	};
+})(function (target) {
+	return document.querySelector(target)
+});
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(50);
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton) options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+	if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else {
+		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	options.attrs.type = "text/css";
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	options.attrs.type = "text/css";
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = options.transform(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
 
 /***/ })
 /******/ ]);
