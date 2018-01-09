@@ -10,7 +10,7 @@
                 .cardInfo__item
                     {{user.name}}
                 .cardInfo__item
-                    i.fa.fa-map-marker
+                    i.fa.fa-map-marker &nbsp;
                     {{user.location}}
             .cardName
                 Био

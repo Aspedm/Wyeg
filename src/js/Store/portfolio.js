@@ -1,5 +1,6 @@
 import Api from '../Api/index';
 import Config from '../config/index';
+import common from './common';
 
 const gitHub = new Api();
 
@@ -11,6 +12,7 @@ const state = {
 
 const actions = {
     getRepos: ({commit}) => {
+        commit('loader', true, common);
         gitHub.get({
             url: `https://api.github.com/users/${Config.defaultUser}/repos`
         }).then(resp => {
@@ -22,6 +24,7 @@ const actions = {
             return resp;
         }).then(resp => {
             commit('receiveRepos', resp);
+            commit('loader', false, common);
         }).catch(error => console.error(error));
     }
 }
