@@ -1,10 +1,6 @@
-import Header from '../../components/header.vue';
 import {mapActions, mapGetters} from 'vuex';
 
 export default {
-    components: {
-        'app-header': Header
-    },
     computed: {
         yearsList() {
             return this.$store.state.portfolio.yearsList;

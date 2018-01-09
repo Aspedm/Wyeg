@@ -1,9 +1,16 @@
-<template>
-    <div class="container" id="app">
-        <keep-alive>
-            <router-view></router-view>
-        </keep-alive>
-    </div>
+<template lang="jade">
+    #app.container
+        app-header
+        keep-alive
+            router-view
 </template>
 
-<script></script>
+<script>
+import Header from '../components/header.vue';
+
+export default {
+    components: {
+        'app-header': Header
+    }
+}
+</script>
