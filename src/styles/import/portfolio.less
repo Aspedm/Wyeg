@@ -7,11 +7,15 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        flex-direction: row;
         margin-top: 45px;
+        @media (max-width: 670px) {
+            flex-direction: column;
+        }
     }
     &__item {
-        padding: 20px;
         margin: 0 25px 25px 0;
+        padding-bottom: 40px;
         position: relative;
         background-color: #fff;
         background-clip: border-box;
@@ -20,9 +24,14 @@
         overflow: hidden;
         flex: 0 0 33.3333333333%;
         max-width: 33.3333333333%;
-        min-height: 100px;
+        @media (max-width: 670px) {
+            max-width: 100%;
+            flex: 0 0 auto;
+            margin-right: 0;
+        }
     }
     .repoName {
+        padding: 20px 20px 0 20px;
         color: #343a40;
         font-weight: 600;
         text-transform: uppercase;
@@ -30,6 +39,7 @@
         margin-bottom: 10px;
     }
     .repoDesc {
+        padding: 0 20px 0 20px;
         font-size: 13px;
         color: #868ba1;
         font-weight: 400;
@@ -37,11 +47,11 @@
     }
     .repoLink {
         background-color: #f5f6f7;
+        padding: 0.75rem 1.25rem;
         position: absolute;
         left: 0;
         bottom: 0;
         width: 100%;
-        padding: 0.75rem 1.25rem;
         a {
             font-size: 12px;
             text-decoration: none;
