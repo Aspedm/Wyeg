@@ -4,6 +4,8 @@ import router from './__router';
 import store from './Store/index';
 import {mapActions} from 'vuex';
 
+Vue.config.productionTip = APPDEV;
+
 window.onload = () => {
     var app = new Vue({
         el: '#app',

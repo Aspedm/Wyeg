@@ -19,6 +19,6 @@ const RouteList = [
 
 Vue.use(VueRouter);
 export default new VueRouter({
-    mode: 'hash',
+    mode: 'history',
     routes: RouteList
 });
